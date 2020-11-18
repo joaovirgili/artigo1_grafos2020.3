@@ -64,20 +64,21 @@ class Node:
         obj.vertices = sorted(obj.vertices, key=id)
         #self.arestas = sorted(self.arestas, key=id)
         #obj.arestas = sorted(obj.arestas, key=id)
-        return obj.vertices == self.vertices #and obj.arestas == self.arestas
+        return obj.vertices == self.vertices  # and obj.arestas == self.arestas
+
 
 class ArestaArvore:
     def __init__(self, no1, no2):
         self.no1 = no1
         self.no2 = no2
 
+
 class Arvore:
     nos = []
     arestasArvore = []
     # def __init__(self):
-        # self.root = root
-        # self.largura = largura
-
+    # self.root = root
+    # self.largura = largura
 
 
 def vizinhosDoVertice(grafo, verticeId, outroId):
@@ -177,6 +178,7 @@ def deveAdicionar(novoNo, nos):
             return True
     return False
 
+
 def existeNoPrecisaConectar(no, nos):
     return no
 
@@ -186,10 +188,11 @@ def calculaArestasArvore(nos):
     noArbitrario = nos[random.randint(0, len(nos))]
     noConectar = existeNoPrecisaConectar(noArbitrario, nos)
     # if noConectar is not None:
-        #conecta o nó e finaliza a rodada
-        # arestasNos.append()
-        #continue
+    # conecta o nó e finaliza a rodada
+    # arestasNos.append()
+    # continue
     return []
+
 
 class NodesContendoVertice:
     def __init__(self, node, vertices):
@@ -204,6 +207,7 @@ class NodesContendoVertice:
             return
         self.vertices.append(vertice)
 
+
 def getQuantidadeArestasNoArvore(node, arvore):
     cont = 0
     for aresta in arvore.arestasArvore:
@@ -214,9 +218,9 @@ def getQuantidadeArestasNoArvore(node, arvore):
 
 def criaArestaNaArvore(noNovo, nos, arvore):
 
-    #adiciono o noNovo como filho de uma das tais interseções.
+    # adiciono o noNovo como filho de uma das tais interseções.
 
-    #para cada vértice v em noNovo, busco na árvore todos os Nós com aquele vértice
+    # para cada vértice v em noNovo, busco na árvore todos os Nós com aquele vértice
     listaNodesContendoVertices = []
     for v in noNovo.vertices:
         for no in nos:
@@ -233,9 +237,9 @@ def criaArestaNaArvore(noNovo, nos, arvore):
                     break
         #listaNodesContendoVertices.append(NodesContendoVertice(nosComV, v))
     if len(listaNodesContendoVertices) == 0:
-        return None #not possible to find any node with any vertex v of noNovo
+        return None  # not possible to find any node with any vertex v of noNovo
 
-    #encontro então a maior interseção entre todos os resultados das buscas para atender o méximo de vértices v de noNovo
+    # encontro então a maior interseção entre todos os resultados das buscas para atender o méximo de vértices v de noNovo
     maior = 0
     indexParaNoPai = -1
     for i in range(len(listaNodesContendoVertices)):
@@ -251,14 +255,13 @@ def criaArestaNaArvore(noNovo, nos, arvore):
 
     if indexParaNoPai == -1:
         return None
-    #agora eu adiciono o no indexado por indexParaNoPai como pai de noNovo
+    # agora eu adiciono o no indexado por indexParaNoPai como pai de noNovo
     aresta = ArestaArvore(noNovo, nos.__getitem__(indexParaNoPai))
 
     # print("Nó 1: vértices: ")
     # for a in aresta.no1.vertices:
     #     print(a)
     return aresta
-
 
 
 def tree_decomposition(k, grafo):
